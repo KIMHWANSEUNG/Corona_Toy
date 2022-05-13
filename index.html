@@ -7,10 +7,186 @@
       //https://github.com/parcel-bundler/parcel/issues/1401#issuecomment-1065893254
       let parcelRequire;
     </script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   </head>
-
   <body>
     <script type="module" src="js/main.mjs"></script>
-    <div></div>
+    <div class="total">
+      <h1 style="color: #000">코로나 실시간 현황</h1>
+      <table class="total_table">
+        <thead>
+          <th>총 확진자</th>
+          <th>사망자</th>
+          <th>입원환자</th>
+          <th>위중증자</th>
+        </thead>
+        <tbody id="total_table_body">
+          <tr>
+            <td id="total_cnt" class="up_td">100</td>
+            <td class="death_td">100</td>
+            <td class="down_td">100</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td class="up_td">120↑</td>
+            <td class="death_td">12↑</td>
+            <td class="down_td">21↓</td>
+            <td>12↑</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="total_table">
+        <thead>
+          <th>오늘 확진자</th>
+          <th>어제</th>
+          <th>1주전</th>
+          <th>2주전</th>
+        </thead>
+        <tbody id="today_table_body">
+          <tr>
+            <td class="up_td">1123</td>
+            <td class="up_td">1↑</td>
+            <td class="up_td">1↑</td>
+            <td class="down_td">1↓</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="width: 500px; height: 300px">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <div class="tab">
+        <ul class="tabnav">
+          <li><a href="#tab01">지역 리스트</a></li>
+          <li><a href="#tab02">지도</a></li>
+        </ul>
+        <div class="tabcontent">
+          <div id="tab01">
+            <div>
+              <table class="total_table">
+                <thead>
+                  <th>지역</th>
+                  <th>오늘 확진자</th>
+                  <th>확진자</th>
+                  <th>사망자</th>
+                </thead>
+                <tbody id="region_table_body">
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div id="tab02">tab2 content</div>
+        </div>
+      </div>
+      <!--tab-->
+    </div>
   </body>
 </html>
+
+<style>
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  .total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+  }
+  .total_table {
+    width: 500px;
+    border-radius: 5%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background-color: rgb(228, 230, 235);
+  }
+  .up_td {
+    color: rgb(200, 107, 107);
+  }
+  .down_td {
+    color: rgb(74, 74, 241);
+  }
+  .death_td {
+    color: grey;
+  }
+
+  html,
+  body {
+    width: 100%;
+  }
+  body,
+  div,
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+
+  /*tab css*/
+  .tab {
+    float: left;
+    width: 600px;
+    height: 290px;
+  }
+  .tabnav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-size: 0;
+    width: 600px;
+    border: 1px solid #ddd;
+  }
+  .tabnav li {
+    width: 100%;
+    display: inline-block;
+    height: 46px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+  }
+  .tabnav li a:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 3px;
+  }
+  .tabnav li a.active:before {
+    background: #7ea21e;
+  }
+  .tabnav li a.active {
+    border-bottom: 1px solid #fff;
+  }
+  .tabnav li a {
+    position: relative;
+    display: block;
+    background: #f8f8f8;
+    color: #000;
+    padding: 0 30px;
+    line-height: 46px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .tabnav li a:hover,
+  .tabnav li a.active {
+    background: #fff;
+    color: #7ea21e;
+  }
+  .tabcontent {
+    padding: 20px;
+    height: 500px;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+</style>

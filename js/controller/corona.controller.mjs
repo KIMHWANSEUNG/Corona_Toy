@@ -15,11 +15,4 @@ export class CoronaController {
   getCoronaInfo() {
     corona_service.getCoronaInfo();
   }
-  testConsole() {
-    corona_service.consolelog();
-  }
-}
-
-export function test() {
-  console.log('test');
 }
