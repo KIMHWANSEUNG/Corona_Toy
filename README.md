@@ -45,14 +45,18 @@
 
 ## 모듈 의존성 다이어그램(ESM)
 
-flowchart LR
-A[구매] --> B;
-B[유저, 파라미터, \n 어뷰징 검증] --> C;
-C{client가 안드로이드} -->|Yes| E;
-C -->|No| G;
-E[안드로이드 Proxy 처리] --> G;
-G[DB 저장] --> I;
-I[응답 반환];
+```mermaid
+graph TD;
+    main.js-->controller;
+    controller-->service;
+    controller-->WeatherView;
+    controller-->ListWeatherView;
+    service-->WeatherModel;
+    service-->ListWeatherModel;
+    service-->firebase;
+    WeatherView-->DOM;
+    ListWeatherView-->DOM;
+```
 
 ## 사용법
 
@@ -63,3 +67,7 @@ I[응답 반환];
 ### 프로젝트 실행
 
 `npm start`
+
+### 유닛 테스트
+
+`npm test`
