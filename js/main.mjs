@@ -4,6 +4,8 @@ window.onload = function () {
   const cc = new CoronaController();
   cc.makeChart();
   cc.makeTopTable();
+  cc.makeMapSvg();
+  cc.makeRegionList();
 
   //탭 구현
   $(function () {

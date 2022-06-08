@@ -20,11 +20,11 @@ export class CoronaController {
     //차트 생성
     //this.CoronaView.makeChart();
     //탭 지역리스트
-    this.coronaView.makeRegionList();
+    //this.coronaView.makeRegionList();
     //맵 svg 생성
-    this.coronaView.makeMapSvg();
+    //this.coronaView.makeMapSvg();
 
-    this.coronaService.getCoronaInfo3();
+    //this.coronaService.getCoronaInfo3();
   }
 
   makeTopTable() {
@@ -33,5 +33,13 @@ export class CoronaController {
 
   makeChart() {
     return this.coronaView.makeChart();
+  }
+
+  makeRegionList() {
+    return this.coronaView.makeRegionList();
+  }
+
+  makeMapSvg() {
+    return this.coronaView.makeMapSvg();
   }
 }
