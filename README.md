@@ -58,12 +58,18 @@ graph TD;
 
 ### 프로젝트 빌드
 
-`npm install`
+```
+npm install
+```
 
 ### 프로젝트 실행
 
-`npm start`
+```
+npm start
+```
 
 ### 유닛 테스트
 
-`npm test`
+```
+npm test
+```
