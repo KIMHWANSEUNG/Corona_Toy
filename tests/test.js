@@ -58,7 +58,7 @@ describe('corona test', () => {
   });
   it('코로나 api 가져오기', function (done) {
     service
-      .getCoronaInfo2()
+      .getCoronaInfo3()
       .then(() => done())
       .catch(err => {
         console.log('err:' + err);
