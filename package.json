@@ -9,7 +9,7 @@
     "build": "parcel build index.html",
     "dev": "parcel index.html --open",
     "start": "npm run build && npm run dev",
-    "test": "mocha ./js/test/test.js --timeout 30000 -r @babel/register"
+    "test": "mocha tests/test.js --timeout 30000 -r @babel/register"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",

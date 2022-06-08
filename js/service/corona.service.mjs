@@ -91,7 +91,6 @@ export class CoronaService {
             corona_model.totalCnt = data[val]['totalCnt'];
             map[val] = corona_model;
           }
-          console.log('getCoronaInfo3');
 
           resolve(map);
         });

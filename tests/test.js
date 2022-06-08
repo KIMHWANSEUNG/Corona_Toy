@@ -1,4 +1,4 @@
-import { CoronaService } from '../service/corona.service.mjs';
+import { CoronaService } from '../js/service/corona.service.mjs';
 import fetch from 'node-fetch';
 globalThis.fetch = fetch;
 const request = require('request');
