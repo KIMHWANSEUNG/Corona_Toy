@@ -39,10 +39,6 @@
 
 #### 그래프 차트js: https://www.chartjs.org/docs/latest/samples/information.html
 
-### MVC 설계:
-
-![Alt text](img/MVC설계.png)
-
 ## 모듈 의존성 다이어그램(ESM)
 
 ```mermaid
