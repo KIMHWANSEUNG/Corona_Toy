@@ -49,13 +49,9 @@
 graph TD;
     main.js-->controller;
     controller-->service;
-    controller-->WeatherView;
-    controller-->ListWeatherView;
-    service-->WeatherModel;
-    service-->ListWeatherModel;
-    service-->firebase;
-    WeatherView-->DOM;
-    ListWeatherView-->DOM;
+    controller-->CoronaView;
+    service-->CoronaModel;
+    CoronaView-->DOM;
 ```
 
 ## 사용법
