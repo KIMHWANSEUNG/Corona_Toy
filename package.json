@@ -9,10 +9,24 @@
     "build": "parcel build index.html",
     "dev": "parcel index.html --open",
     "start": "npm run build && npm run dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./js/test/test.js --timeout 30000 -r @babel/register"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/node": "^7.14.7",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/register": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "mocha": "^10.0.0",
+    "nock": "^13.2.4",
+    "node-fetch": "^2.6.7",
     "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.17.9"
   }
 }

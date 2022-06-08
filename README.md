@@ -42,3 +42,13 @@
 ### MVC 설계:
 
 ![Alt text](img/MVC설계.png)
+
+## 프로젝트 실행 방법
+
+### 프로젝트 빌드
+
+`npm install`
+
+### 프로젝트 실행
+
+`npm start`
