@@ -27,6 +27,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "@babel/runtime": "7.17.9"
+    "@babel/runtime": "7.17.9",
+    "chart.js": "^3.8.0"
   }
 }

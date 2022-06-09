@@ -12,34 +12,31 @@ import { CoronaView } from '../view/corona.view.mjs';
 
 export class CoronaController {
   constructor() {
-    this.coronaService = new CoronaService();
     this.coronaView = new CoronaView();
 
     // 상단 현황판 테이블 생성
-    //this.coronaView.makeTopTable();
+    this.coronaView.makeTopTable();
     //차트 생성
-    //this.CoronaView.makeChart();
+    this.coronaView.makeChart();
     //탭 지역리스트
-    //this.coronaView.makeRegionList();
+    this.coronaView.makeRegionList();
     //맵 svg 생성
-    //this.coronaView.makeMapSvg();
-
-    //this.coronaService.getCoronaInfo3();
+    this.coronaView.makeMapSvg();
   }
 
-  makeTopTable() {
-    return this.coronaView.makeTopTable();
-  }
+  // makeTopTable() {
+  //   return this.coronaView.makeTopTable();
+  // }
 
-  makeChart() {
-    return this.coronaView.makeChart();
-  }
+  // makeChart() {
+  //   return this.coronaView.makeChart();
+  // }
 
-  makeRegionList() {
-    return this.coronaView.makeRegionList();
-  }
+  // makeRegionList() {
+  //   return this.coronaView.makeRegionList();
+  // }
 
-  makeMapSvg() {
-    return this.coronaView.makeMapSvg();
-  }
+  // makeMapSvg() {
+  //   return this.coronaView.makeMapSvg();
+  // }
 }

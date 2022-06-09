@@ -4,7 +4,7 @@
  * Manages the data of the application.
  */
 
-export class Corona {
+export class CoronaModel {
   constructor() {
     //나라 이름
     this.countryNm = '';

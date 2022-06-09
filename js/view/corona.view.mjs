@@ -1,5 +1,4 @@
 import { CoronaService } from '../service/corona.service.mjs';
-
 /**
  * @class View
  *
@@ -9,36 +8,34 @@ import { CoronaService } from '../service/corona.service.mjs';
 export class CoronaView {
   constructor() {
     this.coronaService = new CoronaService();
+    this.coronaService.getRegionTableInfo();
+    this.clickTab();
   }
 
   makeTopTable() {
-    const corona_info = this.coronaService.getCoronaInfo3().then(data => {
+    const corona_info = this.coronaService.getTopTableInfo().then(data => {
       //실시간 현황표
-      document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[0].innerHTML =
-        data.korea['totalCnt'];
-      document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[1].innerHTML =
-        data.korea['deathCnt'];
-      document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[2].innerHTML =
-        data.korea['isolCnt'];
-      document.getElementById('today_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[0].innerHTML =
-        data.korea['incDecK'];
+      document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[0].innerHTML = data['totalCnt'];
+      document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[1].innerHTML = data['deathCnt'];
+      document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[2].innerHTML = data['isolCnt'];
+      //document.getElementById('total_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[3].innerHTML = data['recCnt'];
+
+      document.getElementById('today_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[0].innerHTML = data['incDec'];
+      document.getElementById('today_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[1].innerHTML = data['incDecK'];
+      document.getElementById('today_table_body').getElementsByTagName('tr')[0].getElementsByTagName('td')[2].innerHTML = data['incDecF'];
     });
   }
 
   makeRegionList() {
-    const corona_info = this.coronaService.getCoronaInfo3().then(data => {
+    const corona_info = this.coronaService.getRegionTableInfo().then(data => {
       //지역 리스트
       let region_tbody = document.getElementById('region_table_body');
-      for (var val in data) {
-        if (data[val]['countryNm'] === '합계' || data[val]['countryNm'] === '검역' || data[val]['countryNm'] === undefined) {
-          continue;
-        }
-
-        var row = region_tbody.insertRow(region_tbody.rows.length);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
+      for (let val in data) {
+        let row = region_tbody.insertRow(region_tbody.rows.length);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
 
         cell1.innerHTML = data[val]['countryNm'];
         cell2.innerHTML = data[val]['incDecK'];
@@ -49,25 +46,22 @@ export class CoronaView {
   }
 
   makeChart() {
-    const corona_info = this.coronaService.getCoronaInfo3().then(data => {
+    const corona_info = this.coronaService.getRegionTableInfo().then(data => {
       //차트
-      var region_list = [];
-      var totalCnt_list = [];
-      var deathCnt_list = [];
-      var isolCnt_list = [];
-      for (var val in data) {
-        if (data[val]['countryNm'] === '합계' || data[val]['countryNm'] === '검역' || data[val]['countryNm'] === undefined) {
-          continue;
-        }
+      let region_list = [];
+      let totalCnt_list = [];
+      let deathCnt_list = [];
+      let isolCnt_list = [];
+      for (let val in data) {
         region_list.push(data[val]['countryNm']);
         totalCnt_list.push(data[val]['totalCnt']);
         deathCnt_list.push(data[val]['deathCnt']);
         isolCnt_list.push(data[val]['isolCnt']);
       }
-      var totalCnt_context = document.getElementById('incDecK_Chart').getContext('2d');
-      var deathCnt_context = document.getElementById('deathCnt_Chart').getContext('2d');
-      var isolCnt_context = document.getElementById('isolCnt_Chart').getContext('2d');
-      var totalCnt_Chart = new Chart(totalCnt_context, {
+      let totalCnt_context = document.getElementById('incDecK_Chart').getContext('2d');
+      let deathCnt_context = document.getElementById('deathCnt_Chart').getContext('2d');
+      let isolCnt_context = document.getElementById('isolCnt_Chart').getContext('2d');
+      let totalCnt_Chart = new Chart(totalCnt_context, {
         type: 'bar', // 차트의 형태
         data: {
           // 차트에 들어갈 데이터
@@ -110,7 +104,7 @@ export class CoronaView {
       });
 
       //차트(사망자)
-      var deathCnt_Chart = new Chart(deathCnt_context, {
+      let deathCnt_Chart = new Chart(deathCnt_context, {
         type: 'bar', // 차트의 형태
         data: {
           // 차트에 들어갈 데이터
@@ -153,7 +147,7 @@ export class CoronaView {
       });
 
       //차트(완치자)
-      var isolCnt_Chart = new Chart(isolCnt_context, {
+      let isolCnt_Chart = new Chart(isolCnt_context, {
         type: 'bar', // 차트의 형태
         data: {
           // 차트에 들어갈 데이터
@@ -198,12 +192,9 @@ export class CoronaView {
   }
 
   makeMapSvg() {
-    const corona_info = this.coronaService.getCoronaInfo3().then(data => {
+    const corona_info = this.coronaService.getRegionTableInfo().then(data => {
       //지도 svg
-      for (var val in data) {
-        if (data[val]['countryNm'] === '합계' || data[val]['countryNm'] === '검역' || data[val]['countryNm'] === undefined) {
-          continue;
-        }
+      for (let val in data) {
         const map_count = document.getElementById(val);
         map_count.innerHTML += data[val]['countryNm'];
         map_count.innerHTML += data[val]['incDecK'];
@@ -213,9 +204,26 @@ export class CoronaView {
           document.getElementById(val + '_svg').style.fill = '#489CFF';
         } else if (data[val]['incDecK'] > 1000 && data[val]['incDecK'] <= 2000) {
           document.getElementById(val + '_svg').style.fill = '#6CC0FF';
+        } else if (data[val]['incDecK'] > 500 && data[val]['incDecK'] <= 1000) {
+          document.getElementById(val + '_svg').style.fill = '#7ED2FF';
         }
-        console.log(val);
       }
+    });
+  }
+
+  //탭 구현
+  clickTab() {
+    $(function () {
+      $('.tabcontent > div').hide();
+      $('.tabnav a')
+        .click(function () {
+          $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+          $('.tabnav a').removeClass('active');
+          $(this).addClass('active');
+          return false;
+        })
+        .filter(':eq(0)')
+        .click();
     });
   }
 }
