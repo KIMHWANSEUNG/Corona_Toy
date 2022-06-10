@@ -63,7 +63,7 @@
           <li><a href="#tab02">지도</a></li>
         </ul>
         <div class="tabcontent">
-          <div id="tab01">
+          <div id="tab01" class="tab01">
             <div>
               <table class="region_table">
                 <thead>
@@ -257,6 +257,7 @@
   }
   .total {
     display: flex;
+    height: 1850px;
     flex-direction: column;
     align-items: center;
     background-color: rgb(255, 255, 255);
@@ -268,8 +269,20 @@
     margin-top: 10px;
     margin-bottom: 30px;
     background-color: rgb(228, 230, 235);
-    font: 17px/24px 'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+    font: 15px/24px 'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
       Sans-Serif;
+  }
+  .total_table th {
+    background: #42444e;
+    color: #fff;
+    text-align: center;
+  }
+  .total_table td {
+    border-right: 1px solid #c6c9cc;
+    border-bottom: 1px solid #c6c9cc;
+  }
+  .total_table td:first-child {
+    border-left: 1px solid #c6c9cc;
   }
   .region_table {
     width: 500px;
@@ -561,5 +574,8 @@
     border: 1px solid;
     left: 100px;
     top: 480px;
+  }
+  .tab01 {
+    justify-items: center;
   }
 </style>
