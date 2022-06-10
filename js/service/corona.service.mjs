@@ -5,6 +5,8 @@
  */
 
 import { CoronaModel } from '../model/corona.model.mjs';
+import { API_KEY } from '../../apiKey.js';
+
 let corona_info;
 export class CoronaService {
   constructor() {
@@ -28,19 +30,9 @@ export class CoronaService {
     });
   }
 
-  // getCoronaInfo2() {
-  //   return new Promise((resolve, reject) => {
-  //     fetch('https://api.corona-19.kr/korea/beta/?serviceKey=hHwO849npqDe2W5lkysVxAGmPMZir7zjg')
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         resolve(data);
-  //       });
-  //   });
-  // }
-
   getCoronaInfo() {
     return new Promise((resolve, reject) => {
-      fetch('https://api.corona-19.kr/korea/beta/?serviceKey=hHwO849npqDe2W5lkysVxAGmPMZir7zjg')
+      fetch('https://api.corona-19.kr/korea/beta/?serviceKey=' + API_KEY)
         .then(res => res.json())
         .then(data => {
           const map = new Map();
@@ -48,7 +40,6 @@ export class CoronaService {
             if (data[val]['countryNm'] === '합계' || data[val]['countryNm'] === '검역' || data[val]['countryNm'] === undefined) {
               continue;
             }
-
             const corona_model = new CoronaModel();
             corona_model.countryNm = data[val]['countryNm'];
             corona_model.deathCnt = data[val]['deathCnt'];
@@ -69,7 +60,7 @@ export class CoronaService {
 
   getCoronaTotalInfo() {
     return new Promise((resolve, reject) => {
-      fetch('https://api.corona-19.kr/korea/beta/?serviceKey=hHwO849npqDe2W5lkysVxAGmPMZir7zjg')
+      fetch('https://api.corona-19.kr/korea/beta/?serviceKey=' + API_KEY)
         .then(res => res.json())
         .then(data => {
           const map = new Map();
